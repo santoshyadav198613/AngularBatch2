@@ -12,6 +12,7 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="app.js"></script>
     <script src="main.controller.js"></script>
+    <script src="product.controller.js"></script>
 </head>
 
 <body class="container" ng-controller="mainController">
@@ -24,55 +25,7 @@
         </div>
     </div>
     <button class="btn btn-primary" ng-click="toggleTable($event,isTableVisible)">{{state}}</button>
-    <table ng-if="isTableVisible" class="table">
-        <thead>
-            <tr>
-                <th>
-                    Sr.No
-                </th>
-                <th>
-                </th>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Description
-                </th>
-                <th>
-                    Price
-                </th>
-                <th>
-                    Qunatity
-                </th>
-                <th>
-                    Total
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="product in products track by $index">
-                <td>
-                    {{$index + 1}}
-                </td>
-                <td>
-                    <img ng-src="{{product.imagePath}}" alt="Smiley face" height="42" width="42">
-                </td>
-                <td>
-                    {{product.name}}
-                </td>
-                <td ng-bind="product.description">
-                </td>
-                <td>
-                    {{product.price}}
-                </td>
-                <td>
-                    <input type="number" ng-model="product.qty" placeholder="Quantity">
-                </td>
-                <td ng-bind="product.price * product.qty">
-                </td>
-            </tr>
-        </tbody>
-    </table>
+
 
     <div ng-switch="state">
         <div ng-switch-when="Show">
@@ -82,6 +35,57 @@
             Hide Data
         </div>
         <div ng-switch-default> State not known </div>
+    </div>
+    <div ng-controller="productcontroller">
+        <table ng-if="isTableVisible" class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Sr.No
+                    </th>
+                    <th>
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Qunatity
+                    </th>
+                    <th>
+                        Total
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="product in products track by $index">
+                    <td>
+                        {{$index + 1}}
+                    </td>
+                    <td>
+                        <img ng-src="{{product.imagePath}}" alt="Smiley face" height="42" width="42">
+                    </td>
+                    <td>
+                        {{product.name}}
+                    </td>
+                    <td ng-bind="product.description">
+                    </td>
+                    <td>
+                        {{product.price}}
+                    </td>
+                    <td>
+                        <input type="number" ng-model="product.qty" placeholder="Quantity">
+                    </td>
+                    <td ng-bind="product.price * product.qty">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 
