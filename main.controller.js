@@ -1,6 +1,7 @@
-angular.module("myApp").controller("mainController", ["$scope", function ($scope) {
+angular.module("myApp").controller("mainController", ["$scope","testdata", function ($scope,testdata) {
     $scope.message = "Hello World!";
     $scope.state = "Hide";
+    $scope.testdata = testdata;
     $scope.isTableVisible = true;
     $scope.employeeInfo = {
         name: 'Test',
@@ -11,6 +12,10 @@ angular.module("myApp").controller("mainController", ["$scope", function ($scope
     $scope.toggleTable = function (evt, toggle) {
         $scope.isTableVisible = !toggle;
         $scope.state = $scope.isTableVisible === true ? "Hide" : "Show";
+        $scope.$broadcast('toChild',toggle); //Send event to child controllers
     };
 
+    $scope.$on('message',function(data){
+            console.log(data);
+    }); //To capture the event
 }]);

@@ -37,34 +37,48 @@
         <div ng-switch-default> State not known </div>
     </div>
     <div ng-controller="productcontroller">
-          <div class="row">
-            <form name="productform" class="form-horizontal" ng-submit="addProduct(product)">
+        <!--<pre>{{productform | json}}</pre> -->
+        <div class="row">
+            <form name="productform" class="form-horizontal" novalidate ng-submit="addProduct(product)">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="name">Product Name:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" ng-model="product.name"  placeholder="Product Name">
+                        <input name="productName" type="text" minlength="3" maxlength="5" required class="form-control" ng-model="product.name" placeholder="Product Name">
+                        <span class="alert-danger" ng-if="productform.productName.$invalid && productform.productName.$dirty">Product Name is required.</span>
                     </div>
+
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="description">Description:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" ng-model="product.description"  placeholder="Product description">
+                        <input name="prodDesc" type="text" required class="form-control" ng-model="product.description" placeholder="Product description">
+                        <span class="alert-danger" ng-if="productform.prodDesc.$invalid && productform.prodDesc.$dirty">Product description is required.</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="price">Price:</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" ng-model="product.price"  placeholder="Price">
+                        <input name="price" type="number" min="1000" max="10000" required class="form-control" ng-model="product.price" placeholder="Price">
+                        <span class="alert-danger" ng-if="productform.price.$invalid && productform.price.$dirty">Product price is required.</span>
+                        <span class="alert-danger" ng-if="productform.price.$invalid && productform.price.$error.min">Minimum price is 1000.</span>
+                        <span class="alert-danger" ng-if="productform.price.$invalid && productform.price.$error.max">Max price is 10000.</span>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button ng-disabled="productform.$invalid" type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </form>
         </div>
 
+        <div class="row">
+            <input type="text" name="filterText" ng-model="filterText" placeholder="filterText">
+            <!--append property name for specific search-->
+            <select name="limitto" id="" ng-model="limitTo" ng-options="prod.name for prod in products"></select>
+            <select name="pagesize" ng-model="pagelimit" ng-options="page for page in pageSize"></select>
+        </div>
         <div class="row">
             <table ng-if="isTableVisible" class="table">
                 <thead>
@@ -92,34 +106,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="product in products track by $index">
+                    <tr ng-repeat="product in products | filter: filterText | orderBy : 'name' : false | limitTo : pagelimit">
                         <td>
-                            {{$index + 1}}
+                            {{$index+1}}
                         </td>
                         <td>
                             <img ng-src="{{product.imagePath}}" alt="Smiley face" height="42" width="42">
                         </td>
                         <td>
-                            {{product.name}}
+                            {{product.name | uppercase}}
                         </td>
-                        <td ng-bind="product.description">
+                        <td ng-bind="product.description | lowercase">
                         </td>
                         <td>
-                            {{product.price}}
+                            {{product.price| currency}}
                         </td>
                         <td>
                             <input type="number" ng-model="product.qty" placeholder="Quantity">
                         </td>
-                        <td ng-bind="product.price * product.qty">
+                        <td ng-bind="product.price * product.qty | currency">
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-
-
-
 </body>
 
 </html>
