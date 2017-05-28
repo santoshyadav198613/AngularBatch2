@@ -10,7 +10,7 @@ angular.module("myApp").controller("mainController", ["$scope","testdata", funct
     };
 
     $scope.toggleTable = function (evt, toggle) {
-        $scope.isTableVisible = !toggle;
+       // $scope.isTableVisible = !toggle;
         $scope.state = $scope.isTableVisible === true ? "Hide" : "Show";
         $scope.$broadcast('toChild',toggle); //Send event to child controllers
     };

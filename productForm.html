@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+  <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="app.js"></script>
+    <!--<script src="main.controller.js"></script>-->
+    <script src="product.controller.js"></script>
+</head>
+
+<body ng-controller="productcontroller">
+    <form name="productform" class="form-horizontal" novalidate ng-submit="addProduct(product)">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="name">Product Name:</label>
+            <div class="col-sm-10">
+                <input name="productName" type="text" minlength="3" maxlength="5" required class="form-control" ng-model="product.name" placeholder="Product Name">
+                <span class="alert-danger" ng-if="productform.productName.$invalid && productform.productName.$dirty">Product Name is required.</span>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="description">Description:</label>
+            <div class="col-sm-10">
+                <input name="prodDesc" type="text" required class="form-control" ng-model="product.description" placeholder="Product description">
+                <span class="alert-danger" ng-if="productform.prodDesc.$invalid && productform.prodDesc.$dirty">Product description is required.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="price">Price:</label>
+            <div class="col-sm-10">
+                <input name="price" type="number" min="1000" max="10000" required class="form-control" ng-model="product.price" placeholder="Price">
+                <span class="alert-danger" ng-if="productform.price.$invalid && productform.price.$dirty">Product price is required.</span>
+                <span class="alert-danger" ng-if="productform.price.$invalid && productform.price.$error.min">Minimum price is 1000.</span>
+                <span class="alert-danger" ng-if="productform.price.$invalid && productform.price.$error.max">Max price is 10000.</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button ng-disabled="productform.$invalid" type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

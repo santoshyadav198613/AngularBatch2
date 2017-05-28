@@ -1,8 +1,8 @@
 angular.module("myApp").controller("productcontroller", ["$scope", function ($scope) {
     
-    $scope.$on('toChild',function(data){
-            console.log(data);
-    }); //To capture the event
+    // $scope.$on('toChild',function(data){
+    //         console.log(data);
+    // }); //To capture the event
     
     $scope.pageSize = [1,5,10];
 
@@ -32,6 +32,8 @@ angular.module("myApp").controller("productcontroller", ["$scope", function ($sc
         product.qty = 1;
         product.imagePath = 'http://ecx.images-amazon.com/images/I/91BGB%2BOixwL._UX395_.jpg';
         $scope.products.push(product);
+        $scope.product ={};
+        $scope.productform.$setPristine()
         //$scope.$emit('message',prod); //Send event to parent controllers
     };
 }]);

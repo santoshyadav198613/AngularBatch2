@@ -24,6 +24,8 @@
             {{employeeInfo.name}} {{employeeInfo.address}} {{employeeInfo.age}}
         </div>
     </div>
+    <input type="checkbox" ng-model="isTableVisible" ng-click="toggleTable($event,isTableVisible)" name="toggleCheck">Toggle</input>
+    {{isTableVisible}}
     <button class="btn btn-primary" ng-click="toggleTable($event,isTableVisible)">{{state}}</button>
 
 
