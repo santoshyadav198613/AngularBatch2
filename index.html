@@ -5,134 +5,40 @@
     <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="app.js"></script>
-    <script src="main.controller.js"></script>
-    <script src="product.controller.js"></script>
+    <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="./app/app.js"></script>
+    <script src="./app/config.js"></script>
+    <script src="./app/controller/main.controller.js"></script>
+    <script src="./app/controller/product.controller.js"></script>
+    <script src="./app/controller/signup.controller.js"></script>
+    <script src="./app/controller/login.controller.js"></script>
+    <script src="./app/service/common.value.js"></script>
+    <script src="./app/service/common.constant.js"></script>
+    <script src="./app/service/product.factory.js"></script>
+    <script src="./app/service/product.service.js"></script>
 </head>
 
-<body class="container" ng-controller="mainController">
-    {{message}}
-    <div ng-bind="message"></div>
-    <div class="panel panel-primary">
-        <div class="panel-heading">Employee Information</div>
-        <div class="panel-body">
-            {{employeeInfo.name}} {{employeeInfo.address}} {{employeeInfo.age}}
+<body class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" ui-sref="home">My Application</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a ui-sref="home" ui-sref-active='active'>Home</a></li>
+                <li><a ui-sref="product" ui-sref-active='active'>Product</a></li>
+                <li><a ui-sref="login" ui-sref-active='active'>Login</a></li>
+                <li><a ui-sref="signup" ui-sref-active='active'>Sign Up</a></li>
+            </ul>
         </div>
-    </div>
-    <input type="checkbox" ng-model="isTableVisible" ng-click="toggleTable($event,isTableVisible)" name="toggleCheck">Toggle</input>
-    {{isTableVisible}}
-    <button class="btn btn-primary" ng-click="toggleTable($event,isTableVisible)">{{state}}</button>
+    </nav>
 
-
-    <div ng-switch="state">
-        <div ng-switch-when="Show">
-            Show Data
-        </div>
-        <div ng-switch-when="Hide">
-            Hide Data
-        </div>
-        <div ng-switch-default> State not known </div>
-    </div>
-    <div ng-controller="productcontroller">
-        <!--<pre>{{productform | json}}</pre> -->
-        <div class="row">
-            <form name="productform" class="form-horizontal" novalidate ng-submit="addProduct(product)">
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="name">Product Name:</label>
-                    <div class="col-sm-10">
-                        <input name="productName" type="text" minlength="3" maxlength="5" required class="form-control" ng-model="product.name" placeholder="Product Name">
-                        <span class="alert-danger" ng-if="productform.productName.$invalid && productform.productName.$dirty">Product Name is required.</span>
-                    </div>
-
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="description">Description:</label>
-                    <div class="col-sm-10">
-                        <input name="prodDesc" type="text" required class="form-control" ng-model="product.description" placeholder="Product description">
-                        <span class="alert-danger" ng-if="productform.prodDesc.$invalid && productform.prodDesc.$dirty">Product description is required.</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="price">Price:</label>
-                    <div class="col-sm-10">
-                        <input name="price" type="number" min="1000" max="10000" required class="form-control" ng-model="product.price" placeholder="Price">
-                        <span class="alert-danger" ng-if="productform.price.$invalid && productform.price.$dirty">Product price is required.</span>
-                        <span class="alert-danger" ng-if="productform.price.$invalid && productform.price.$error.min">Minimum price is 1000.</span>
-                        <span class="alert-danger" ng-if="productform.price.$invalid && productform.price.$error.max">Max price is 10000.</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button ng-disabled="productform.$invalid" type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <div class="row">
-            <input type="text" name="filterText" ng-model="filterText" placeholder="filterText">
-            <!--append property name for specific search-->
-            <select name="limitto" id="" ng-model="limitTo" ng-options="prod.name for prod in products"></select>
-            <select name="pagesize" ng-model="pagelimit" ng-options="page for page in pageSize"></select>
-        </div>
-        <div class="row">
-            <table ng-if="isTableVisible" class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            Sr.No
-                        </th>
-                        <th>
-                        </th>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            Description
-                        </th>
-                        <th>
-                            Price
-                        </th>
-                        <th>
-                            Qunatity
-                        </th>
-                        <th>
-                            Total
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="product in products | filter: filterText | orderBy : 'name' : false | limitTo : pagelimit">
-                        <td>
-                            {{$index+1}}
-                        </td>
-                        <td>
-                            <img ng-src="{{product.imagePath}}" alt="Smiley face" height="42" width="42">
-                        </td>
-                        <td>
-                            {{product.name | uppercase}}
-                        </td>
-                        <td ng-bind="product.description | lowercase">
-                        </td>
-                        <td>
-                            {{product.price| currency}}
-                        </td>
-                        <td>
-                            <input type="number" ng-model="product.qty" placeholder="Quantity">
-                        </td>
-                        <td ng-bind="product.price * product.qty | currency">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <ui-view></ui-view>
 </body>
 
 </html>

@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="myApp">
-
-<head>
-    <title>Sign Up</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="app.js"></script>
-    <!--<script src="main.controller.js"></script>-->
-    <script src="signup.controller.js"></script>
-</head>
-
-<body ng-controller="signupcontroller">
-    <div ng-if="!!message" class="alert alert-success">
+ <div ng-if="!!message" class="alert alert-success">
         {{message}}
     </div>
     <form name="signupForm" class="form-horizontal" novalidate ng-submit="addUser(user)">
@@ -75,5 +57,3 @@
         </div>
     </form>
 </body>
-
-</html>
