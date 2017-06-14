@@ -1,4 +1,4 @@
-angular.module('myApp').config(function ($stateProvider,$urlRouterProvider) {
+angular.module('myApp').config(function ($stateProvider, $urlRouterProvider) {
 
     var productstate = {
         name: 'product',
@@ -6,6 +6,20 @@ angular.module('myApp').config(function ($stateProvider,$urlRouterProvider) {
         templateUrl: './app/views/product.html',
         controller: 'productcontroller'
     };
+
+    // var teststate = {
+    //     name: 'test',
+    //     url: '/test',
+    //     templateUrl: './app/views/test.html',
+    //     views: {
+    //         'orders': {
+    //             templateUrl: './app/views/order.html'
+    //         },
+    //         'customer': {
+    //             templateUrl: './app/views/customer.html'
+    //         }
+    //     }
+    // };
 
     var homestate = {
         name: 'home',
@@ -35,12 +49,28 @@ angular.module('myApp').config(function ($stateProvider,$urlRouterProvider) {
         controller: 'customercontroller'
     };
 
-  var orderstate = {
+    var orderstate = {
         name: 'order',
         url: '/order',
         templateUrl: './app/views/order.html',
-        controller: 'ordercontroller'
+        controller: 'ordercontroller',
+        data:
+        {
+            pageSiz: 10,
+            pagingOptions: [10, 20, 30, 40]
+        }
     };
+
+    var orderdetails = {
+        name: 'product.details',
+        url: '/:id',
+        template: '<h1>This is Details page {{productName}}</h1>',
+        controller: function ($scope, $stateParams) {
+            $scope.productName = $stateParams.id;
+        }
+    };
+
+
 
     $stateProvider.state(productstate);
     $stateProvider.state(homestate);
@@ -48,7 +78,19 @@ angular.module('myApp').config(function ($stateProvider,$urlRouterProvider) {
     $stateProvider.state(loginstate);
     $stateProvider.state(customerstate);
     $stateProvider.state(orderstate);
-    
+    $stateProvider.state(orderdetails);
+    $stateProvider.state('product.test', {
+        views: {
+            'orders': {
+                templateUrl: './app/views/order.html'
+            },
+            'customer': {
+                templateUrl: './app/views/customer.html'
+            }
+        }
+
+    });
+
     $urlRouterProvider.otherwise('/login');
 
 });
