@@ -57,3 +57,34 @@
         </div>
     </div>
 </form>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>UserName</th>
+        <th>Email</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="cust in customers track by $index">
+            <td>
+                {{::cust.id}}
+            </td>
+            <td>
+                {{::cust.name}}
+            </td>
+            <td>
+                {{::cust.username}}
+            </td>
+            <td>
+                {{::cust.email}}
+            </td>
+            <td>
+                {{::cust.address.zipcode}}
+            </td>
+        </tr>
+    </tbody>
+</table>

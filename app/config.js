@@ -1,10 +1,14 @@
-angular.module('myApp').config(function ($stateProvider,$urlRouterProvider) {
+angular.module('myApp').config(function ($stateProvider, $urlRouterProvider) {
 
     var productstate = {
         name: 'product',
         url: '/product',
         templateUrl: './app/views/product.html',
-        controller: 'productcontroller'
+        controller: 'productcontroller',
+        data: {
+            pageSize: 10,
+            pagingOptions: [5, 10, 15, 20]
+        }
     };
 
     var homestate = {
@@ -35,11 +39,30 @@ angular.module('myApp').config(function ($stateProvider,$urlRouterProvider) {
         controller: 'customercontroller'
     };
 
-  var orderstate = {
+    var orderstate = {
         name: 'order',
         url: '/order',
         templateUrl: './app/views/order.html',
         controller: 'ordercontroller'
+    };
+
+    //Dynamic Url
+    var productdescriptionstate = {
+        name: 'productdescription',
+        url: '/description/:id',
+        template: 'This is description view',
+        controller: function ($stateParams) {
+            console.log('Id is ' + $stateParams.id);
+        }
+    };
+
+    //Dynamic URL with child state
+    //while calling from parent use .statename
+    //while calling from other state user complete state name
+    var productdetailsstate = {
+        name: 'product.details', //parent.child state naming convention
+        url: '/details/:id',
+        template: 'This is product details view'
     };
 
     $stateProvider.state(productstate);
@@ -48,7 +71,28 @@ angular.module('myApp').config(function ($stateProvider,$urlRouterProvider) {
     $stateProvider.state(loginstate);
     $stateProvider.state(customerstate);
     $stateProvider.state(orderstate);
-    
+    $stateProvider.state(productdescriptionstate);
+    $stateProvider.state(productdetailsstate);
+
+    //named views
+    $stateProvider.state("product.order",
+        {
+            url: '/productstate',
+            views: {
+                "order": {
+                    templateUrl: './app/views/customer.html',
+                    controller: 'customercontroller'
+                },
+                "customer":
+                {
+                    templateUrl: './app/views/order.html',
+                    controller: 'ordercontroller'
+                }
+
+            }
+        });
+
+
     $urlRouterProvider.otherwise('/login');
 
 });
