@@ -11,6 +11,20 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider) {
         }
     };
 
+    // var teststate = {
+    //     name: 'test',
+    //     url: '/test',
+    //     templateUrl: './app/views/test.html',
+    //     views: {
+    //         'orders': {
+    //             templateUrl: './app/views/order.html'
+    //         },
+    //         'customer': {
+    //             templateUrl: './app/views/customer.html'
+    //         }
+    //     }
+    // };
+
     var homestate = {
         name: 'home',
         url: '/home',
@@ -43,7 +57,21 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider) {
         name: 'order',
         url: '/order',
         templateUrl: './app/views/order.html',
-        controller: 'ordercontroller'
+        controller: 'ordercontroller',
+        data:
+        {
+            pageSiz: 10,
+            pagingOptions: [10, 20, 30, 40]
+        }
+    };
+
+    var orderdetails = {
+        name: 'product.details',
+        url: '/:id',
+        template: '<h1>This is Details page {{productName}}</h1>',
+        controller: function ($scope, $stateParams) {
+            $scope.productName = $stateParams.id;
+        }
     };
 
     //Dynamic Url
@@ -91,7 +119,18 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider) {
 
             }
         });
+    $stateProvider.state(orderdetails);
+    $stateProvider.state('product.test', {
+        views: {
+            'orders': {
+                templateUrl: './app/views/order.html'
+            },
+            'customer': {
+                templateUrl: './app/views/customer.html'
+            }
+        }
 
+    });
 
     $urlRouterProvider.otherwise('/login');
 
