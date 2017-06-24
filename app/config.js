@@ -9,6 +9,7 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider) {
             pageSize: 10,
             pagingOptions: [5, 10, 15, 20]
         }
+        //,abstract : true
     };
 
     // var teststate = {
@@ -53,6 +54,13 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider) {
         controller: 'customercontroller'
     };
 
+    var employeestate = {
+        name: 'employee',
+        url: '/employee',
+        templateUrl: './app/views/employee.html',
+        controller: 'myEmployeeController'
+    };
+
     var orderstate = {
         name: 'order',
         url: '/order',
@@ -65,14 +73,14 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider) {
         }
     };
 
-    var orderdetails = {
-        name: 'product.details',
-        url: '/:id',
-        template: '<h1>This is Details page {{productName}}</h1>',
-        controller: function ($scope, $stateParams) {
-            $scope.productName = $stateParams.id;
-        }
-    };
+    // var orderdetails = {
+    //     name: 'product.details',
+    //     url: '/:id',
+    //     template: '<h1>This is Details page {{productName}}</h1>',
+    //     controller: function ($scope, $stateParams) {
+    //         $scope.productName = $stateParams.id;
+    //     }
+    // };
 
     //Dynamic Url
     var productdescriptionstate = {
@@ -98,6 +106,7 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state(signupstate);
     $stateProvider.state(loginstate);
     $stateProvider.state(customerstate);
+    $stateProvider.state(employeestate);
     $stateProvider.state(orderstate);
     $stateProvider.state(productdescriptionstate);
     $stateProvider.state(productdetailsstate);
@@ -119,7 +128,7 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider) {
 
             }
         });
-    $stateProvider.state(orderdetails);
+    // $stateProvider.state(orderdetails);
     $stateProvider.state('product.test', {
         views: {
             'orders': {
