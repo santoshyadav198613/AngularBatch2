@@ -1,3 +1,5 @@
+<a ng-click="goTo('bottom')" id="top" >Click here to go to bottom</a>
+
 <form name="productform" class="form-horizontal" novalidate ng-submit="addProduct(product)">
     <div class="form-group">
         <label class="control-label col-sm-2" for="name">Product Name:</label>
@@ -6,8 +8,7 @@
             <input name="productName" type="text" minlength="3" maxlength="5" required class="form-control" ng-model="product.name" placeholder="Product Name">
         </div>
 
-    </div>
-    <div class="form-group">
+    </div><div class="form-group">
         <label class="control-label col-sm-2" for="description">Description:</label>
         <div class="col-sm-10">
             <input name="prodDesc" type="text" required class="form-control" ng-model="product.description" placeholder="Product description">
@@ -63,7 +64,7 @@
         <tbody>
             <tr ng-repeat="product in products | filter: filterText | orderBy : 'name' : false | limitTo : pagelimit">
                 <td>
-                    {{$index+1}}
+                   <input type="checkbox" ng-model="product.selected">
                 </td>
                 <td>
                     <img ng-src="{{product.imagePath}}" alt="Smiley face" height="42" width="42">
@@ -88,6 +89,7 @@
         </tbody>
     </table>
 </div>
+<button ng-click="placeOrder(products)" class="btn btn-primary">Place Order</button>
 
 <div>
     <ui-view></ui-view>
@@ -99,3 +101,5 @@
     <div ui-view='orders'></div>
     <div ui-view='customer'></div>
 </div>
+
+<a ng-click="goTo('top')" id="bottom" >Click here to go to top</a>

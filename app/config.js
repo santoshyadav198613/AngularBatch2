@@ -1,4 +1,4 @@
-angular.module('myApp').config(function ($stateProvider, $urlRouterProvider) {
+angular.module('myApp').config(function ($stateProvider, $urlRouterProvider, $anchorScrollProvider) {
 
     var productstate = {
         name: 'product',
@@ -143,4 +143,20 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/login');
 
+    $anchorScrollProvider.disableAutoScrolling();
+
 });
+
+
+angular.module('myApp').run(function ($location, $rootScope, loginservice, $state) {
+
+    $rootScope.$on('$locationChangeStart', function (event, to, from) {
+        var isLoggedIn = loginservice.checkLogin();
+        if (!isLoggedIn) {
+            // event.preventDefault();
+            // $state.go('login');
+        }
+
+    });
+
+})

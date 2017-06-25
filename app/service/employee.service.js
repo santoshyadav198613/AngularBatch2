@@ -1,19 +1,24 @@
-angular.module("myApp").service('employeeservice', function ($http) {
-    var employee = [];
-    var service =
-        {
-            getEmployee: getEmployee,
-            saveEmployee: saveEmployee
-        };
-
+angular.module("myApp").service('empServices', function () {
+    var empList = [{
+                name: 'Vikram',
+                age: 20,
+                address:'Jath'
+            }, {
+                name: 'Kiran',
+                age: 21,
+                address: 'Jath'
+            }
+        ];
+    var service = {
+        getEmployee: fetchEmployee,
+        saveEmployee: saveEmployee
+    }
     return service;
 
-    function getEmploye() {
-        return $http.get('https://jsonplaceholder.typicode.com/users');
+    function fetchEmployee() {
+        return empList;
     }
-
     function saveEmployee(emp) {
-        employee.push(emp);
+       empList.push(emp);
     }
-
 });
