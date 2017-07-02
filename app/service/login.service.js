@@ -1,4 +1,4 @@
-angular.module("myApp").service('loginservice', function () {
+angular.module("myApp").service('loginservice', function ($q) {
     var isLoggedIn = false;
     var service = {
         login: login,
@@ -7,9 +7,17 @@ angular.module("myApp").service('loginservice', function () {
     return service;
 
     function checkLogin() {
-        return isLoggedIn;
+        var deferred = $q.defer();
+        console.log(deferred);
+        if (isLoggedIn) {
+            deferred.resolve('UserLoggedIn');
+        }
+        else {
+            deferred.reject('Invlid User');
+        }
+        return deferred.promise;
     }
     function login(user) {
-            isLoggedIn =true;
+        isLoggedIn = true;
     }
 });

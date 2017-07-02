@@ -1,5 +1,9 @@
-angular.module('myApp').config(function ($stateProvider, $urlRouterProvider, $anchorScrollProvider) {
+angular.module('myApp').config(function ($stateProvider, $urlRouterProvider,
+    $anchorScrollProvider, $logProvider,$rootScopeProvider,$qProvider,$locationProvider) {
 
+$rootScopeProvider.digestTtl(5);
+    $logProvider.debugEnabled(false);
+    $qProvider.errorOnUnhandledRejections(true);
     var productstate = {
         name: 'product',
         url: '/product',
@@ -144,6 +148,7 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider, $an
     $urlRouterProvider.otherwise('/login');
 
     $anchorScrollProvider.disableAutoScrolling();
+    $locationProvider.html5Mode(true);
 
 });
 
@@ -151,11 +156,15 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider, $an
 angular.module('myApp').run(function ($location, $rootScope, loginservice, $state) {
 
     $rootScope.$on('$locationChangeStart', function (event, to, from) {
-        var isLoggedIn = loginservice.checkLogin();
-        if (!isLoggedIn) {
-            // event.preventDefault();
-            // $state.go('login');
-        }
+        loginservice.checkLogin().then(function(res) {
+            console.log(res)
+        }, function(err){
+            console.log(err);
+        });
+        // if (!isLoggedIn) {
+        //     // event.preventDefault();
+        //     // $state.go('login');
+        // }
 
     });
 
