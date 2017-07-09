@@ -18,7 +18,7 @@ angular.module("myApp").controller("productcontroller",
             $log.warn($scope.isLoggedIn);
             $log.debug($scope.isLoggedIn);
             $log.error($scope.isLoggedIn);
-            $window.alert($scope.isLoggedIn);
+            //$window.alert($scope.isLoggedIn);
             $scope.rootData = $rootScope.isLoggedin;
             var data = $state.current.data.pageSize;
             $scope.pageSize = [1, 5, 10];

@@ -1,7 +1,9 @@
 angular.module('myApp').config(function ($stateProvider, $urlRouterProvider,
-    $anchorScrollProvider, $logProvider,$rootScopeProvider,$qProvider,$locationProvider) {
+    $anchorScrollProvider, $logProvider, $rootScopeProvider,
+    $qProvider, $locationProvider, $httpProvider) {
 
-$rootScopeProvider.digestTtl(5);
+
+    $rootScopeProvider.digestTtl(5);
     $logProvider.debugEnabled(false);
     $qProvider.errorOnUnhandledRejections(true);
     var productstate = {
@@ -36,6 +38,14 @@ $rootScopeProvider.digestTtl(5);
         templateUrl: './app/views/home.html',
         controller: 'mainController'
     };
+
+    // var defaultstate = {
+    //     name: 'default',
+    //     url: '',
+    //     templateUrl: './app/views/home.html',
+    //     controller: 'startupcontroller'
+    // };
+
 
     var signupstate = {
         name: 'signup',
@@ -105,6 +115,20 @@ $rootScopeProvider.digestTtl(5);
         template: 'This is product details view'
     };
 
+    var poststate = {
+        name: 'post',
+        url: '/post',
+        templateUrl: './app/views/post.html',
+        controller: 'postcontroller',
+    };
+
+    var postdetailsstate = {
+        name: 'postdetails',
+        url: '/post/:id',
+        templateUrl: './app/views/postdetail.html',
+        controller: 'postdetailcontroller',
+    };
+
     $stateProvider.state(productstate);
     $stateProvider.state(homestate);
     $stateProvider.state(signupstate);
@@ -114,7 +138,9 @@ $rootScopeProvider.digestTtl(5);
     $stateProvider.state(orderstate);
     $stateProvider.state(productdescriptionstate);
     $stateProvider.state(productdetailsstate);
-
+    $stateProvider.state(poststate);
+    $stateProvider.state(postdetailsstate);
+    //$stateProvider.state(defaultstate);
     //named views
     $stateProvider.state("product.order",
         {
@@ -148,17 +174,32 @@ $rootScopeProvider.digestTtl(5);
     $urlRouterProvider.otherwise('/login');
 
     $anchorScrollProvider.disableAutoScrolling();
-    $locationProvider.html5Mode(true);
+    //$locationProvider.html5Mode(true);
 
+    // $httpProvider.interceptors.push(function () {
+    //     return {
+    //         request: function (config) {
+    //             if (config.url === 'https://jsonplaceholder.typicode.com/posts') {
+    //                 console.log(config)
+    //             }
+    //         },
+    //         response: function (config) {
+    //             if (config.url === 'https://jsonplaceholder.typicode.com/posts') {
+    //                 console.log(config)
+    //             }
+    //         }
+    //     }
+    // });
+    $httpProvider.defaults.headers.common.id = "test"; //add custom headers 
 });
 
 
 angular.module('myApp').run(function ($location, $rootScope, loginservice, $state) {
 
     $rootScope.$on('$locationChangeStart', function (event, to, from) {
-        loginservice.checkLogin().then(function(res) {
+        loginservice.checkLogin().then(function (res) {
             console.log(res)
-        }, function(err){
+        }, function (err) {
             console.log(err);
         });
         // if (!isLoggedIn) {

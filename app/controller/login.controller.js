@@ -5,7 +5,7 @@ angular.module('myApp').controller('logincontroller', ['$scope', '$state',
             console.log(user);
             loginservice.login(user);
             $rootScope.isLoggedin = true;
-            $state.go('product');
+            $state.go('default');
         }
 
     }]);
