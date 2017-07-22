@@ -19,10 +19,10 @@ angular.module('myApp').controller('postcontroller', ['$scope', 'postservice', '
         function init() {
             // loadPosts();
             getPostFromResource();
-            postresourceservice.get(1).
-            $promise.then(function(res){
-                console.log(res);
-            });
+            // postresourceservice.get(1).
+            // $promise.then(function(res){
+            //     console.log(res);
+            // });
         }
 
         init();
