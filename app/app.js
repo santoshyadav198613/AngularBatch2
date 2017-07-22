@@ -1,4 +1,5 @@
-angular.module("myApp",['commonmodule','ui.router','ngCookies']);
+angular.module("myApp",['commonmodule','ui.router',
+'ngCookies','ngResource']);
 
 angular.module('commonmodule',[]);
 
