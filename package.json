@@ -13,6 +13,7 @@
     "http-server": "^0.10.0"
   },
   "dependencies": {
+    "angular-cookies": "^1.6.4",
     "angular-ui-router": "^1.0.3",
     "http-server": "^0.10.0"
   }
