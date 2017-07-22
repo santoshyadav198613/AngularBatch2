@@ -1,14 +1,14 @@
-<a ng-click="goTo('bottom')" id="top" >Click here to go to bottom</a>
-{{isLoggedIn}} - {{rootData}}
+<a ng-click="goTo('bottom')" id="top">Click here to go to bottom</a> {{isLoggedIn}} - {{rootData}}
 <form name="productform" class="form-horizontal" novalidate ng-submit="addProduct(product)">
     <div class="form-group">
         <label class="control-label col-sm-2" for="name">Product Name:</label>
         <div class="col-sm-10">
- 
+
             <input name="productName" type="text" minlength="3" maxlength="5" required class="form-control" ng-model="product.name" placeholder="Product Name">
         </div>
 
-    </div><div class="form-group">
+    </div>
+    <div class="form-group">
         <label class="control-label col-sm-2" for="description">Description:</label>
         <div class="col-sm-10">
             <input name="prodDesc" type="text" required class="form-control" ng-model="product.description" placeholder="Product description">
@@ -62,9 +62,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="product in products | filter: filterText | orderBy : 'name' : false | limitTo : pagelimit">
+            <tr ng-repeat="product in products | price : 2000 : 4000 | filter: filterText | orderBy : 'name' : false | limitTo : pagelimit">
                 <td>
-                   <input type="checkbox" ng-model="product.selected">
+                    <input type="checkbox" ng-model="product.selected">
                 </td>
                 <td>
                     <img ng-src="{{product.imagePath}}" alt="Smiley face" height="42" width="42">
@@ -75,7 +75,7 @@
                 <td ng-bind="product.description | lowercase">
                 </td>
                 <td>
-                    {{product.price| currency}}
+                    {{product.price| inr : 3 }}
                 </td>
                 <td>
                     <input type="number" ng-model="product.qty" placeholder="Quantity">
@@ -98,8 +98,8 @@
 
 <button ui-sref=".order" class="btn btn-primary">Orders</button>
 
-    <div ui-view='orders'></div>
-    <div ui-view='customer'></div>
+<div ui-view='orders'></div>
+<div ui-view='customer'></div>
 </div>
 
-<a ng-click="goTo('top')" id="bottom" >Click here to go to top</a>
+<a ng-click="goTo('top')" id="bottom">Click here to go to top</a>
