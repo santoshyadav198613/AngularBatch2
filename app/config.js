@@ -1,7 +1,37 @@
+// angular.module('myApp').provider('myInterceptor', function () {
+//     return {
+//         request: function (config) {
+//             if (config.url === 'https://jsonplaceholder.typicode.com/posts') {
+//                 console.log(config)
+//             }
+//         },
+//         response: function (config) {
+//             if (config.url === 'https://jsonplaceholder.typicode.com/posts') {
+//                 console.log(config)
+//             }
+//         }
+//     }
+// });
+
 angular.module('myApp').config(function ($stateProvider, $urlRouterProvider,
     $anchorScrollProvider, $logProvider, $rootScopeProvider,
     $qProvider, $locationProvider, $httpProvider) {
 
+    //$httpProvider.interceptors.push(myInterceptor);
+    // $httpProvider.interceptors.push(function () {
+    //     return {
+    //         request: function (config) {
+    //             if (config.url === 'https://jsonplaceholder.typicode.com/posts') {
+    //                 console.log(config)
+    //             }
+    //         },
+    //         response: function (config) {
+    //             if (config.url === 'https://jsonplaceholder.typicode.com/posts') {
+    //                 console.log(config)
+    //             }
+    //         }
+    //     }
+    // });
 
     $rootScopeProvider.digestTtl(5);
     $logProvider.debugEnabled(false);
@@ -176,20 +206,7 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider,
     $anchorScrollProvider.disableAutoScrolling();
     //$locationProvider.html5Mode(true);
 
-    // $httpProvider.interceptors.push(function () {
-    //     return {
-    //         request: function (config) {
-    //             if (config.url === 'https://jsonplaceholder.typicode.com/posts') {
-    //                 console.log(config)
-    //             }
-    //         },
-    //         response: function (config) {
-    //             if (config.url === 'https://jsonplaceholder.typicode.com/posts') {
-    //                 console.log(config)
-    //             }
-    //         }
-    //     }
-    // });
+
     $httpProvider.defaults.headers.common.id = "test"; //add custom headers 
 });
 
