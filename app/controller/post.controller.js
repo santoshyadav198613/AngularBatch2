@@ -1,6 +1,10 @@
-angular.module('myApp').controller('postcontroller', ['$scope', 'postservice', 'postresourceservice',
-    function ($scope, postservice, postresourceservice) {
+angular.module('myApp').controller('postcontroller', ['postservice', 'postresourceservice','postsData',
+    function (postservice, postresourceservice,postsData) {
 
+        var vm = this;
+        vm.posts = [];
+        vm.newPost = false;
+        vm.addPost = addPost;
         // function loadPosts() {
         //     postservice.getPosts().then(function (res) {
         //         if (res.status === 200) {
@@ -11,14 +15,17 @@ angular.module('myApp').controller('postcontroller', ['$scope', 'postservice', '
         //     });
         // }
 
-        function getPostFromResource() {
-            var data = postresourceservice.query().$promise.then(function (res) {
-                $scope.posts = res;
-            });
-        }
+        // function getPostFromResource() {
+        //     var data = postresourceservice.query().$promise.then(function (res) {
+        //         vm.posts = res;
+        //     }).catch(function (err) {
+        //         vm.error = "There is some problem while loading data";
+        //     });
+        // }
         function init() {
+             vm.posts = postsData;
             // loadPosts();
-            getPostFromResource();
+            //getPostFromResource();
             // postresourceservice.get(1).
             // $promise.then(function(res){
             //     console.log(res);
@@ -27,8 +34,12 @@ angular.module('myApp').controller('postcontroller', ['$scope', 'postservice', '
 
         init();
 
-        $scope.addPost = function (post) {
-            var result = postresourceservice.save(post);
+        function addPost(post) {
+            var result = postresourceservice.save(post).$promise.then(function (res) {
+                vm.newPost = true;
+            }).catch(function (err) {
+                vm.error = "There is some problem while saving data";
+            });
             // postservice.savePost(post).then(function (res) {
             //     $scope.newPost = res.status === 201 ? res : undefined;
             //     loadPosts();

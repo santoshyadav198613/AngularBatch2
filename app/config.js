@@ -150,6 +150,12 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider,
         url: '/post',
         templateUrl: './app/views/post.html',
         controller: 'postcontroller',
+        controllerAs: 'vm',
+        resolve: {
+            postsData: function (postresourceservice) {
+                return postresourceservice.query().$promise;
+            }
+        }
     };
 
     var postdetailsstate = {
