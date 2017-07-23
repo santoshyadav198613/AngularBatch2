@@ -1,0 +1,26 @@
+1. controllerAs Syntax
+
+Advantages:
+1. This is the best practices to use
+2. Saves lot of watches and digest cycle
+
+limitations:
+Can not use emit and broadcast.
+
+Resolve Property- Routing: 
+
+1. Resolve helps us to get data while state is loaded
+2. Useful in case, our view depends on some initial data
+3. data can be used in child states
+4. No need to resolve the promises, it will automatically resolved for you.
+
+
+Component: 
+
+To pass data between components use bindings property:
+1. bindings: {
+        post: '=', //Two way binding
+        title: '@' // Pass string
+	name:'<' // One way binding
+    }
+2. Default use $ctrl to access property or methods
