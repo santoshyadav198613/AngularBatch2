@@ -1,3 +1,4 @@
+
 <div ng-if="!!vm.error" class="alert alert-danger">
     {{error}}
 </div>
@@ -33,41 +34,4 @@
     </div>
 </form>
 
-
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                User Id
-            </th>
-            <th>
-                Id
-            </th>
-            <th>
-                Title
-            </th>
-            <th>
-                Body
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="post in vm.posts track by $index">
-            <td>
-                {{::post.userId}}
-            </td>
-            <td>
-              <a ui-sref="postdetails({id: post.id})">{{::post.id}}</a>
-            </td>
-            <td>
-                {{::post.title}}
-            </td>
-            <td>
-                {{::post.body}}
-            </td>
-        </tr>
-    </tbody>
-</table>
-<!--{{posts}}-->
-
+<post-component post="vm.posts" title="this is defualt component"></post-component>
