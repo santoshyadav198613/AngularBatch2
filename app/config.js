@@ -148,9 +148,10 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider,
     var poststate = {
         name: 'post',
         url: '/post',
-        templateUrl: './app/views/post.html',
-        controller: 'postcontroller',
-        controllerAs: 'vm',
+        // templateUrl: './app/views/post.html',
+        // controller: 'postcontroller',
+        // controllerAs: 'vm',
+        component: 'postComponent',
         resolve: {
             postsData: function (postresourceservice) {
                 return postresourceservice.query().$promise;
