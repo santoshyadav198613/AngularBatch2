@@ -24,3 +24,19 @@ To pass data between components use bindings property:
 	name:'<' // One way binding
     }
 2. Default use $ctrl to access property or methods
+
+For Using Resolve Property:
+
+1. define the '<' binding with same property name as of resolve
+property.
+2. Now you can bind the data by using the newly created property
+
+$doCheck()
+
+Will be called after init and every event is fired. Best place to write some logic
+which can not be handled easily by angular or  JS.
+
+$onChanges()
+
+we can track the oldValue and newValue for the properties with '<' and '&' binding.
+
