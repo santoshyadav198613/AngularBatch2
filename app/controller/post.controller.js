@@ -1,5 +1,5 @@
-angular.module('myApp').controller('postcontroller', ['postservice', 'postresourceservice','postsData',
-    function (postservice, postresourceservice,postsData) {
+angular.module('myApp').controller('postcontroller', ['postservice', 'postresourceservice',
+    function (postservice, postresourceservice) {
 
         var vm = this;
         vm.posts = [];
@@ -23,13 +23,7 @@ angular.module('myApp').controller('postcontroller', ['postservice', 'postresour
         //     });
         // }
         function init() {
-             vm.posts = postsData;
-            // loadPosts();
-            //getPostFromResource();
-            // postresourceservice.get(1).
-            // $promise.then(function(res){
-            //     console.log(res);
-            // });
+             
         }
 
         init();

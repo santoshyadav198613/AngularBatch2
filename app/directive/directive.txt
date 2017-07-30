@@ -1,17 +1,30 @@
 Creating Directives
 
-Much like controllers, directives are registered on modules. To register a directive, you use the module.directive 
-API. module.directive takes the normalized directive name followed by a factory function. 
+There are 3 types of directives:
+1. Compoment
+2. attribute
+3. structured
+
+
+Much like controllers, directives are registered on modules. To register a directive, 
+you use the module.directive 
+API. module.directive takes the normalized directive name followed by a
+factory function. 
 This factory function should return an object with the different options
 
-Best Practice: In order to avoid collisions with some future standard, it's best to prefix your own directive names.
-For instance, if you created a <carousel> directive, it would be problematic if HTML7 introduced the same element.
+Best Practice: In order to avoid collisions with some future standard, 
+it's best to prefix your own directive names.
+For instance, if you created a <carousel> directive, it would be problematic 
+if HTML5 introduced the same element.
 A two or three letter prefix (e.g. btfCarousel) works well. 
-Similarly, do not prefix your own directives with ng or they might conflict with directives included in a
+Similarly, do not prefix your own directives with ng or they might conflict 
+with directives included in a
 future version of AngularJS.
 
-Note: When you create a directive, it is restricted to attribute and elements only by default. 
-In order to create directives that are triggered by class name, you need to use the restrict option.
+Note: When you create a directive, it is restricted to attribute and elements
+only by default. 
+In order to create directives that are triggered by class name, 
+you need to use the restrict option.
 
 The restrict option is typically set to:
 
