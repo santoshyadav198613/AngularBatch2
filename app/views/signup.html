@@ -1,64 +1,64 @@
- <div ng-if="!!message" class="alert alert-success">
-        {{message}}
+<div ng-if="!!message" class="alert alert-success">
+    {{message}}
+</div>
+<form name="signupForm" class="form-horizontal" novalidate ng-submit="addUser(user)">
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="name">User Name:</label>
+        <div class="col-sm-10">
+            <input name="userName" type="text" minlength="5" maxlength="10" required class="form-control" ng-model="user.name" placeholder="User Name">
+            <span class="alert-danger" ng-if="signupForm.userName.$invalid && signupForm.userName.$dirty">User Name is required.</span>
+            <span class="alert-danger" ng-if="signupForm.userName.$error.minlength">User Name should be minimum 5 characters.</span>
+            <span class="alert-danger" ng-if="signupForm.userName.$error.maxlength">User Name should be of 10 characters.</span>
+        </div>
+
     </div>
-    <form name="signupForm" class="form-horizontal" novalidate ng-submit="addUser(user)">
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="name">User Name:</label>
-            <div class="col-sm-10">
-                <input name="userName" type="text" minlength="5" maxlength="10" required class="form-control" ng-model="user.name" placeholder="User Name">
-                <span class="alert-danger" ng-if="signupForm.userName.$invalid && signupForm.userName.$dirty">User Name is required.</span>
-                <span class="alert-danger" ng-if="signupForm.userName.$error.minlength">User Name should be minimum 5 characters.</span>
-                <span class="alert-danger" ng-if="signupForm.userName.$error.maxlength">User Name should be of 10 characters.</span>
-            </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="description">Email:</label>
+        <div class="col-sm-10">
+            <input name="email" type="email" required class="form-control" ng-model="user.email" placeholder="Email">
+            <span class="alert-danger" ng-if="signupForm.email.$invalid && signupForm.email.$dirty">Email is required.</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="price">Price:</label>
+        <div class="col-sm-10">
+            <input name="password" type="password" minlength="6" maxlength="15" required class="form-control" ng-model="user.password"
+                placeholder="Password">
+            <span class="alert-danger" ng-if="signupForm.password.$invalid && signupForm.password.$dirty">Password is required.</span>
+            <span class="alert-danger" ng-if="signupForm.password.$error.minlength">Password should be of minimum 6 characters.</span>
+            <span class="alert-danger" ng-if="signupForm.password.$error.maxlength">Password should be of max 15 characters.</span>
+        </div>
+    </div>
 
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="price">Price:</label>
+        <div class="col-sm-10">
+            <input name="confirmpassword" type="password" minlength="6" maxlength="15" required class="form-control" ng-model="user.confirmpassword"
+                placeholder="Confirm Password">
+            <span class="alert-danger" ng-if="signupForm.confirmpassword.$invalid && signupForm.confirmpassword.$dirty">Password is required.</span>
+            <span class="alert-danger" ng-if="signupForm.confirmpassword.$error.minlength">Password should be of minimum 6 characters.</span>
+            <span class="alert-danger" ng-if="signupForm.confirmpassword.$error.maxlength">Password should be of max 15 characters.</span>
+            <span class="alert-danger" ng-if="user.password !== user.confirmpassword">Password and Confirm Password should be same.</span>
         </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="description">Email:</label>
-            <div class="col-sm-10">
-                <input name="email" type="email" required class="form-control" ng-model="user.email" placeholder="Email">
-                <span class="alert-danger" ng-if="signupForm.email.$invalid && signupForm.email.$dirty">Email is required.</span>
-            </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2">
         </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="price">Price:</label>
-            <div class="col-sm-10">
-                <input name="password" type="password" minlength="6" maxlength="15" required class="form-control" ng-model="user.password"
-                    placeholder="Password">
-                <span class="alert-danger" ng-if="signupForm.password.$invalid && signupForm.password.$dirty">Password is required.</span>
-                <span class="alert-danger" ng-if="signupForm.password.$error.minlength">Password should be of minimum 6 characters.</span>
-                <span class="alert-danger" ng-if="signupForm.password.$error.maxlength">Password should be of max 15 characters.</span>
-            </div>
+        <div class="col-sm-10">
+            <input type="checkbox" name="confirmation" ng-checked="isValid" required ng-model="user.tnc">Click here to agree
+            with Terms and Conditions
+            </input>
         </div>
-
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="price">Price:</label>
-            <div class="col-sm-10">
-                <input name="confirmpassword" type="password" minlength="6" maxlength="15" required class="form-control" ng-model="user.confirmpassword"
-                    placeholder="Confirm Password">
-                <span class="alert-danger" ng-if="signupForm.confirmpassword.$invalid && signupForm.confirmpassword.$dirty">Password is required.</span>
-                <span class="alert-danger" ng-if="signupForm.confirmpassword.$error.minlength">Password should be of minimum 6 characters.</span>
-                <span class="alert-danger" ng-if="signupForm.confirmpassword.$error.maxlength">Password should be of max 15 characters.</span>
-                <span class="alert-danger" ng-if="user.password !== user.confirmpassword">Password and Confirm Password should be same.</span>
-            </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button ng-disabled="signupForm.$invalid" type="submit" class="btn btn-primary">Submit</button>
         </div>
-        <div class="form-group">
-            <div class="col-sm-2">
-            </div>
-            <div class="col-sm-10">
-                <input type="checkbox" name="confirmation" required ng-model="user.tnc">Click here to agree with Terms and
-                Conditions
-                </input>
-            </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button ng-click="gotoLogin()" type="button" class="btn btn-primary">Login</button>
         </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button ng-disabled="signupForm.$invalid" type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
-         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button ng-click="gotoLogin()" type="button" class="btn btn-primary">Login</button>
-            </div>
-        </div>
-    </form>
-</body>
+    </div>
+</form>
+{{isValid}}

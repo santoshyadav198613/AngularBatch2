@@ -3,3 +3,8 @@ angular.module('myApp').filter('inr', function () {
         return "Rs." + value;
     }
 });
+
+
+
+
+

@@ -6,4 +6,9 @@ angular.module('myApp').controller('ordercontroller', ['$scope', '$state', 'cust
         $scope.saveOrder = function (order) {
             console.log(order);
         }
+
+        $scope.updatePrice = function (qty) {
+                console.log(qty);
+                $scope.order.totalAmount = $scope.order.product.price  * qty;
+        }
     }]);

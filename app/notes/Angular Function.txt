@@ -1,0 +1,71 @@
+angular.copy
+
+Creates a deep copy of source, which should be an object or an array.
+
+If no destination is supplied, a copy of the object or array is created.
+If a destination is provided, all of its elements (for arrays) or properties (for objects) are deleted and then all elements/properties from the source are copied to it.
+If source is not an object or array (inc. null and undefined), source is returned.
+If source is identical to destination an exception will be thrown.
+	
+
+angular.extend
+
+
+Extends the destination object dst by copying own enumerable properties from the src object(s) to dst.
+You can specify multiple src objects. If you want to preserve original objects,
+ you can do so by passing an empty object as the target: 
+var object = angular.extend({}, object1, object2).
+
+
+angular.fromJson
+
+Deserializes a JSON string.
+angular.fromJson(json);
+
+
+angular.isArray
+
+Determines if a reference is an Array. Alias of Array.isArray.
+
+angular.isDate
+
+Determines if a value is a date.
+
+angular.isDefined
+
+Determines if a reference is defined.
+
+angular.isElement
+
+Determines if a reference is a DOM element (or wrapped jQuery element).
+
+angular.isFunction
+
+Determines if a reference is a Function.
+
+angular.isNumber
+
+Determines if a reference is a Number.
+
+This includes the "special" numbers NaN, +Infinity and -Infinity.
+
+
+angular.isObject
+
+Determines if a reference is an Object. Unlike typeof in JavaScript, nulls are not considered to be objects. Note that JavaScript arrays are objects.
+
+
+angular.isString
+
+Determines if a reference is a String.
+
+
+angular.isUndefined
+
+Determines if a reference is undefined.
+
+
+angular.toJson
+
+Serializes input into a JSON-formatted string. Properties with leading $$ 
+characters will be stripped since AngularJS uses this notation internally.

@@ -1,0 +1,91 @@
+ngBlur
+
+Specify custom behavior on blur event.
+
+A blur event fires when an element has lost focus.
+
+
+ngChange
+
+Evaluate the given expression when the user changes the input. The expression is evaluated immediately, unlike the JavaScript onchange event which only triggers at the end of a change (usually, when the user leaves the form element or presses the return key).
+
+
+ngChecked
+
+Sets the checked attribute on the element, if the expression inside ngChecked 
+is truthy.
+
+ngCloak
+
+The ngCloak directive is used to prevent the AngularJS html template from being briefly displayed by the browser in its raw (uncompiled) form while your application is loading. Use this directive to avoid the undesirable flicker effect caused by the html template display.
+
+
+ngCopy
+
+Specify custom behavior on copy event.
+
+
+ngCut
+
+Specify custom behavior on cut event.
+
+
+ngDblclick
+
+The ngDblclick directive allows you to specify custom behavior on a dblclick event.
+
+ngFocus
+
+Specify custom behavior on focus event.
+
+
+ngDisabled
+
+this directive sets the disabled attribute on the element 
+(typically a form control, e.g. input, button, select etc.) 
+if the expression inside ngDisabled evaluates to truthy.
+
+ngHref
+
+Using AngularJS markup like {{hash}} in an href attribute will make the link go to the wrong URL if the user clicks it before AngularJS has a chance to replace the {{hash}} markup with its value. Until AngularJS replaces the markup the link will be broken and will most likely return a 404 error. The ngHref directive solves this problem.
+
+
+ngInclude
+
+Fetches, compiles and includes an external HTML fragment.
+
+
+ngKeydown
+
+Specify custom behavior on keydown event.
+
+
+ngKeypress
+
+Specify custom behavior on keypress event.
+
+
+ngKeyup
+
+Specify custom behavior on keyup event.
+
+
+ngList
+
+Text input that converts between a delimited string and an array of strings. 
+The default delimiter is a comma followed by a space - equivalent to ng-list=", ".
+You can specify a custom delimiter as the value of the ngList attribute - 
+for example, ng-list=" | ".
+
+
+ngReadonly
+
+Sets the readonly attribute on the element, if the expression inside ngReadonly is truthy. Note that readonly applies only to input elements with specific types. See the input docs on MDN for more information.
+
+
+ngMousedown
+ngMouseenter
+ngMouseleave
+ngMousemove
+ngMouseover
+ngMouseup

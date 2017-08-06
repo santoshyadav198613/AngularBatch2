@@ -1,5 +1,6 @@
 angular.module('myApp').controller('signupcontroller', ['$scope', '$state', function ($scope, $state) {
 
+    $scope.isValid = false;
     $scope.addUser = function (user) {
         console.log(user);
         $scope.user = {};
