@@ -108,8 +108,9 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider,
     var orderstate = {
         name: 'order',
         url: '/order',
-        templateUrl: './app/views/order.html',
-        controller: 'ordercontroller',
+        component: 'orderComponent',
+        // templateUrl: './app/views/order.html',
+        // controller: 'ordercontroller',
         data:
         {
             pageSiz: 10,
