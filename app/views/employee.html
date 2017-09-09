@@ -5,6 +5,13 @@
 <post-directive>
 </post-directive>
 
+<div class="alert alert-success" ng-if="isSuccess">
+    Employee added successuly!
+</div>
+<div class="alert alert-danger" ng-if="isError">
+    There is some problem while saving data!
+</div>
+
             <pre>Employee Info</pre>
             <pre>{{empList}}</pre>
             <table class="table table-bordered">
@@ -32,7 +39,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="address">Address:</label>
                             <div class="col-sm-10">
-                                <input type="email" name="empAddress" required class="form-control" ng-model="employee.address"  placeholder="employee address">
+                                <input type="text" name="empAddress" required class="form-control" ng-model="employee.address"  placeholder="employee address">
                                 <span ng-if="employeeform.empAddress.$invalid && employeeform.empAddress.$dirty">Requred</span>
                             </div>
                         </div>

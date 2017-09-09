@@ -1,4 +1,4 @@
-angular.module('shoppingApp').directive('myTransclue',function(){
+angular.module('myApp').directive('myTransclue',function(){
 return{
 
     restrict: 'A',

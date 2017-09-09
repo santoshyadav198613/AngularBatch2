@@ -18,7 +18,7 @@ angular.module('myApp').directive('spacebarSupport',function(){
 });
 
 
-angular.module('shoppingApp').directive('eventPause',function($parse){
+angular.module('myApp').directive('eventPause',function($parse){
     return{
       restrict: 'A',
       link : function(scope,elem,attrs){
@@ -35,7 +35,7 @@ angular.module('shoppingApp').directive('eventPause',function($parse){
 
 
 
-angular.module('shoppingApp').directive('myClick',function($parse){
+angular.module('myApp').directive('myClick',function($parse){
     return{
       link : function(scope,elem,attrs){
           var fn= $parse(attrs['myClick']);
@@ -52,7 +52,7 @@ angular.module('shoppingApp').directive('myClick',function($parse){
 
 
 
-angular.module('shoppingApp').directive('displayBox',function($parse){
+angular.module('myApp').directive('displayBox',function($parse){
     return{
         restrict: 'E',
         templateUrl : 'app/views/displayBox.html',

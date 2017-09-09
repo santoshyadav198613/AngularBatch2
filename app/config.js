@@ -99,10 +99,14 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider,
     };
 
     var employeestate = {
+        // name: 'employee',
+        // url: '/employee',
+        // templateUrl: './app/views/employee.html',
+        // controller: 'myEmployeeController'
+
         name: 'employee',
         url: '/employee',
-        templateUrl: './app/views/employee.html',
-        controller: 'myEmployeeController'
+        component: 'employeeComponent'
     };
 
     var orderstate = {
