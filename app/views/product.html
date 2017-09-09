@@ -1,4 +1,11 @@
 <a ng-click="goTo('bottom')" id="top">Click here to go to bottom</a> {{isLoggedIn}} - {{rootData}}
+
+<div class="alert alert-success" ng-if="isSuccess">
+    Product added successuly!
+</div>
+<div class="alert alert-danger" ng-if="isError">
+    There is some problem while saving data!
+</div>
 <form name="productform" class="form-horizontal" novalidate ng-submit="addProduct(product)">
     <div class="form-group">
         <label class="control-label col-sm-2" for="name">Product Name:</label>
@@ -61,7 +68,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="product in products | price : 2000 : 4000 | filter: filterText | orderBy : 'name' : false | limitTo : pagelimit">
+            <tr ng-repeat="product in products | filter: filterText | orderBy : 'name' : false | limitTo : pagelimit">
                 <td>
                     <input type="checkbox" ng-model="product.selected">
                 </td>

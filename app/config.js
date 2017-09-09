@@ -109,8 +109,6 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider,
         name: 'order',
         url: '/order',
         component: 'orderComponent',
-        // templateUrl: './app/views/order.html',
-        // controller: 'ordercontroller',
         data:
         {
             pageSiz: 10,
@@ -143,7 +141,8 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider,
     var productdetailsstate = {
         name: 'product.details', //parent.child state naming convention
         url: '/details/:id',
-        template: 'This is product details view'
+        templateUrl: './app/views/product-details.html',
+        controller: 'productdetailcontroller'
     };
 
     var poststate = {
@@ -212,7 +211,7 @@ angular.module('myApp').config(function ($stateProvider, $urlRouterProvider,
     //$locationProvider.html5Mode(true);
 
 
-    $httpProvider.defaults.headers.common.id = "test"; //add custom headers 
+  //  $httpProvider.defaults.headers.common.id = "test"; //add custom headers 
 });
 
 

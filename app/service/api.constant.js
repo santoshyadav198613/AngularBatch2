@@ -1,0 +1,1 @@
+angular.module("myApp").constant('apiEndPoint','http://localhost:3000/');
